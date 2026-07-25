@@ -66,7 +66,7 @@ export default function AudioScreen() {
       return;
     }
 
-    const toValue = phase === 'inhale' ? 1.15 : phase === 'exhale' ? 0.8 : breathScale._value;
+    const toValue = phase === 'inhale' ? 1.15 : phase === 'exhale' ? 0.8 : (breathScale as any)._value;
     Animated.timing(breathScale, {
       toValue,
       duration: dur,

@@ -12,4 +12,3 @@ build/
 .env.local
 .vscode/
 .idea/
-pnpm-lock.yaml
