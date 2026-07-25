@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Anchor",
+    "slug": "mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "mobile",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#07090f"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.anchor.grounding"
+    },
+    "android": {
+      "package": "com.anchor.grounding",
+      "backgroundColor": "#07090f",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#07090f"
+      },
+      "permissions": [
+        "android.permission.CALL_PHONE",
+        "android.permission.VIBRATE"
+      ],
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://replit.com/"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

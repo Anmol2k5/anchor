@@ -1,0 +1,15 @@
+node_modules/
+dist/
+build/
+.tsbuildinfo
+.expo/
+.android/
+.ios/
+.replit-artifact/
+.DS_Store
+*.log
+.env
+.env.local
+.vscode/
+.idea/
+pnpm-lock.yaml
