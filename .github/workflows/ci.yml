@@ -60,3 +60,41 @@ jobs:
         with:
           path: artifacts/mockup-sandbox/dist/
       - uses: actions/deploy-pages@v4
+
+  build-android:
+    runs-on: ubuntu-latest
+    needs: typecheck
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      
+      - name: Setup Java for Android Build
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build APK (Local runner)
+        run: cd artifacts/mobile && eas build --platform android --profile preview --local --non-interactive
+
+      - name: Upload APK to GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-app
+          path: artifacts/mobile/*.apk
+          retention-days: 7
