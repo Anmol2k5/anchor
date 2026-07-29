@@ -80,16 +80,20 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Fail if EXPO_TOKEN missing
+      - name: Check EXPO_TOKEN secret
+        id: check_token
         run: |
           if [ -z "${EXPO_TOKEN:-}" ]; then
-            echo "ERROR: EXPO_TOKEN secret is not set. Add it in Settings -> Secrets -> Actions."
-            exit 1
+            echo "::warning title=EXPO_TOKEN missing::EXPO_TOKEN secret is not set in GitHub Secrets. Skipping Android APK build."
+            echo "has_token=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_token=true" >> $GITHUB_OUTPUT
           fi
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Setup Expo and EAS
+        if: steps.check_token.outputs.has_token == 'true'
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
@@ -97,12 +101,15 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
+        if: steps.check_token.outputs.has_token == 'true'
         run: pnpm install
 
       - name: Build APK (Local runner)
+        if: steps.check_token.outputs.has_token == 'true'
         run: cd artifacts/mobile && eas build --platform android --profile preview --local --non-interactive
 
       - name: Upload APK to GitHub Artifacts
+        if: steps.check_token.outputs.has_token == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: android-app
