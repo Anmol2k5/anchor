@@ -2,6 +2,12 @@
   "expo": {
     "name": "Anchor",
     "slug": "mobile",
+    "owner": "mayur2ks-team",
+    "extra": {
+      "eas": {
+        "projectId": "f072b7cd-a7e4-49fd-ba48-65fd97cc3675"
+      }
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
