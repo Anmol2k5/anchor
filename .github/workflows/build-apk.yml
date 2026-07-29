@@ -54,10 +54,6 @@ jobs:
         if: steps.check_token.outputs.has_token == 'true'
         run: pnpm install
 
-      - name: Initialize EAS Project
-        if: steps.check_token.outputs.has_token == 'true'
-        run: cd artifacts/mobile && npx eas-cli@latest init --id f072b7cd-a7e4-49fd-ba48-65fd97cc3675 --non-interactive
-
       - name: Build APK locally
         if: steps.check_token.outputs.has_token == 'true'
         run: cd artifacts/mobile && eas build --platform android --profile preview --local --non-interactive
