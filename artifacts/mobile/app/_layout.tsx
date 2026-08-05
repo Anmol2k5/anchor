@@ -41,9 +41,32 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync();
+    let isMounted = true;
+
+    async function hideSplash() {
+      if (!isMounted) return;
+      try {
+        await SplashScreen.hideAsync();
+      } catch (err) {
+        console.warn('Failed to hide splash screen:', err);
+      }
     }
+
+    // Immediate hide once fonts resolve (or error out)
+    if (fontsLoaded || fontError) {
+      hideSplash();
+    } else {
+      // Fallback: force-hide after 5s in case useFonts never resolves
+      const timeout = setTimeout(hideSplash, 5000);
+      return () => {
+        isMounted = false;
+        clearTimeout(timeout);
+      };
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) return null;

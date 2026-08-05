@@ -122,7 +122,7 @@ export default function GroundingScreen() {
         {phase === 'intro' && (
           <View style={styles.introContent}>
             <BreathingCircle size={200} active>
-              <Text style={[styles.introIcon, { color: colors.primary, fontFamily: 'Inter_300Regular' }]}>
+              <Text style={[styles.introIcon, { color: colors.primary, fontFamily: 'Inter_400Regular' }]}>
                 ∾
               </Text>
             </BreathingCircle>
