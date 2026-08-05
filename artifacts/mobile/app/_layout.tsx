@@ -13,7 +13,7 @@ import {
 } from '@expo-google-fonts/inter';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { AnchorProvider } from '@/context/AnchorContext';
+import { CuanProvider } from '@/context/CuanContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -77,9 +77,9 @@ export default function RootLayout() {
         <QueryClientProvider client={queryClient}>
           <GestureHandlerRootView style={{ flex: 1 }}>
             <KeyboardProvider>
-              <AnchorProvider>
+              <CuanProvider>
                 <RootLayoutNav />
-              </AnchorProvider>
+              </CuanProvider>
             </KeyboardProvider>
           </GestureHandlerRootView>
         </QueryClientProvider>

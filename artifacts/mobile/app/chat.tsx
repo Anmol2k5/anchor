@@ -15,7 +15,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import ChatBubble from '@/components/ChatBubble';
-import { useAnchor } from '@/context/AnchorContext';
+import { useCuan } from '@/context/CuanContext';
 import {
   companionFallbackResponses,
   companionResponses,
@@ -37,7 +37,7 @@ function getCompanionReply(input: string): string {
 export default function ChatScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { chatHistory, addChatMessage, clearChat } = useAnchor();
+  const { chatHistory, addChatMessage, clearChat } = useCuan();
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const flatListRef = useRef<FlatList>(null);

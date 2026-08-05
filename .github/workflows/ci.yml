@@ -34,7 +34,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install
-      - run: cd artifacts/mockup-sandbox && BASE_PATH=/anchor PORT=4173 pnpm run build
+      - run: cd artifacts/mockup-sandbox && BASE_PATH=/cuan PORT=4173 pnpm run build
       - uses: actions/upload-artifact@v4
         with:
           name: web-dist

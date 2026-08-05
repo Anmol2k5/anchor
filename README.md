@@ -1,4 +1,4 @@
-# Anchor
+# Cuan
 
 A Progressive Web App (PWA) for people experiencing Depersonalization-Derealization Disorder (DPDR) and severe panic attacks. A digital lifeline — minimalist, distraction-free, and instantly responsive.
 
@@ -6,8 +6,8 @@ A Progressive Web App (PWA) for people experiencing Depersonalization-Derealizat
 
 - **One-Tap SOS Grounding** — immediate access to grounding exercises
 - **Offline-First PWA** — works in airplane mode via Service Workers & IndexedDB
-- **5-4-3-2-1 Grounding Flow** — interactive sensory grounding with animated breathing anchor
-- **Audio Anchors** — pre-recorded voice notes for crisis moments
+- **5-4-3-2-1 Grounding Flow** — interactive sensory grounding with animated breathing guide
+- **Audio Guides** — pre-recorded voice notes for crisis moments
 - **AI Grounding Companion** — real-time chat with a bounded, safe AI assistant
 - **Daily Mood Logging** — track sleep, stress, and notes
 

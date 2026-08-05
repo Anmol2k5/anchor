@@ -14,7 +14,7 @@ import { useColors } from '@/hooks/useColors';
 import { Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
-import { useAnchor } from '@/context/AnchorContext';
+import { useCuan } from '@/context/CuanContext';
 
 const SLEEP_OPTIONS = [4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -32,7 +32,7 @@ function stressColor(level: number): string {
 export default function LogScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { logs, addLog } = useAnchor();
+  const { logs, addLog } = useCuan();
   const [stress, setStress] = useState(5);
   const [sleep, setSleep] = useState(7);
   const [notes, setNotes] = useState('');

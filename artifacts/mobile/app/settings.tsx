@@ -15,12 +15,12 @@ import { useColors } from '@/hooks/useColors';
 import { Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
-import { useAnchor } from '@/context/AnchorContext';
+import { useCuan } from '@/context/CuanContext';
 
 export default function SettingsScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { settings, updateSettings } = useAnchor();
+  const { settings, updateSettings } = useCuan();
   const [name, setName] = useState(settings.emergencyContactName);
   const [phone, setPhone] = useState(settings.emergencyContactPhone);
   const [saved, setSaved] = useState(false);
@@ -160,7 +160,7 @@ export default function SettingsScreen() {
         </View>
         <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <Text style={[styles.aboutTitle, { color: colors.foreground, fontFamily: 'Inter_600SemiBold' }]}>
-            Anchor
+            Cuan
           </Text>
           <Text style={[styles.aboutText, { color: colors.mutedForeground, fontFamily: 'Inter_400Regular' }]}>
             A sanctuary for people experiencing Depersonalization-Derealization Disorder and severe panic attacks.

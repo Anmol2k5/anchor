@@ -49,6 +49,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: anchor-${{ github.run_number }}
+          name: cuan-${{ github.run_number }}
           path: artifacts/mobile/android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30

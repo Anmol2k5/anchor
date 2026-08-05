@@ -49,7 +49,7 @@ export default function HomeScreen() {
       {/* Wordmark */}
       <View style={styles.wordmark}>
         <Text style={[styles.wordmarkText, { color: colors.mutedForeground, fontFamily: 'Inter_500Medium' }]}>
-          anchor
+          cuan
         </Text>
       </View>
 

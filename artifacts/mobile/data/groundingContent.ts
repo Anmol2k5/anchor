@@ -153,7 +153,7 @@ export const companionResponses: CompanionResponse[] = [
     responses: [
       'You have this space. It is here whenever you need it. You are not alone.',
       'Many people know exactly how this feels. You are in good company, even now.',
-      'Reach out to someone you trust if you can. Connection is one of the most powerful anchors.',
+      'Reach out to someone you trust if you can. Connection is one of the most powerful supports.',
     ],
   },
   {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useColors } from '@/hooks/useColors';
-import type { ChatMessage } from '@/context/AnchorContext';
+import type { ChatMessage } from '@/context/CuanContext';
 
 interface ChatBubbleProps {
   message: ChatMessage;

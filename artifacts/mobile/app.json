@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Anchor",
-    "slug": "mayur",
+    "name": "Cuan",
+    "slug": "cuan",
     "owner": "mayur2ks-team",
     "extra": {
       "eas": {
@@ -21,10 +21,10 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.anchor.grounding"
+      "bundleIdentifier": "com.cuan.grounding"
     },
     "android": {
-      "package": "com.anchor.grounding",
+      "package": "com.cuan.grounding",
       "backgroundColor": "#07090f",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",

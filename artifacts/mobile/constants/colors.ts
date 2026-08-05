@@ -1,5 +1,5 @@
 /**
- * Anchor — Calm dark-first palette.
+ * Cuan — Calm dark-first palette.
  * Both light and dark use the same deep-navy theme since this is a
  * sanctuary app that should always feel dim and soothing.
  */

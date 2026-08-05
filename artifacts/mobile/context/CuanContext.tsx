@@ -22,7 +22,7 @@ export interface ChatMessage {
   timestamp: string;
 }
 
-interface AnchorContextType {
+interface CuanContextType {
   logs: DailyLog[];
   settings: AppSettings;
   chatHistory: ChatMessage[];
@@ -38,14 +38,14 @@ const defaultSettings: AppSettings = {
 };
 
 const STORAGE_KEYS = {
-  LOGS: '@anchor:logs',
-  SETTINGS: '@anchor:settings',
-  CHAT: '@anchor:chat',
+  LOGS: '@cuan:logs',
+  SETTINGS: '@cuan:settings',
+  CHAT: '@cuan:chat',
 };
 
-const AnchorContext = createContext<AnchorContextType | null>(null);
+const CuanContext = createContext<CuanContextType | null>(null);
 
-export function AnchorProvider({ children }: { children: React.ReactNode }) {
+export function CuanProvider({ children }: { children: React.ReactNode }) {
   const [logs, setLogs] = useState<DailyLog[]>([]);
   const [settings, setSettings] = useState<AppSettings>(defaultSettings);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([
@@ -123,16 +123,16 @@ export function AnchorProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AnchorContext.Provider
+    <CuanContext.Provider
       value={{ logs, settings, chatHistory, addLog, updateSettings, addChatMessage, clearChat }}
     >
       {children}
-    </AnchorContext.Provider>
+    </CuanContext.Provider>
   );
 }
 
-export function useAnchor() {
-  const ctx = useContext(AnchorContext);
-  if (!ctx) throw new Error('useAnchor must be used within AnchorProvider');
+export function useCuan() {
+  const ctx = useContext(CuanContext);
+  if (!ctx) throw new Error('useCuan must be used within CuanProvider');
   return ctx;
 }
