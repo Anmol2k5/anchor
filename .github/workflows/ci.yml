@@ -104,16 +104,20 @@ jobs:
         if: steps.check_token.outputs.has_token == 'true'
         run: pnpm install
 
-      - name: Build APK (Local runner)
-        if: steps.check_token.outputs.has_token == 'true'
-        env:
-          EXPO_OWNER: mayur2ks-team
-        run: cd artifacts/mobile && eas build --platform android --profile preview --local --non-interactive --owner mayur2ks-team
+      - name: Expo prebuild (generate native Android project)
+        working-directory: artifacts/mobile
+        run: pnpm exec expo prebuild --platform android --no-install --clean
+
+      - name: Make Gradle executable
+        run: chmod +x artifacts/mobile/android/gradlew
+
+      - name: Build debug APK
+        working-directory: artifacts/mobile/android
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK to GitHub Artifacts
-        if: steps.check_token.outputs.has_token == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: android-app
-          path: artifacts/mobile/*.apk
+          path: artifacts/mobile/android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 7
