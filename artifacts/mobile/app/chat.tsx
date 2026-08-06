@@ -43,6 +43,7 @@ export default function ChatScreen() {
   const flatListRef = useRef<FlatList>(null);
 
   const topPadding = insets.top + (Platform.OS === 'web' ? 67 : 0);
+  const bottomPadding = insets.bottom + (Platform.OS === 'web' ? 34 : 0);
   const bottomInset = insets.bottom > 0 ? insets.bottom : 16;
 
   function sendMessage() {

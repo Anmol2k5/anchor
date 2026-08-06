@@ -5,20 +5,20 @@
  */
 
 const palette = {
-  background: '#07090f',
-  surface: '#0d1424',
-  card: '#111827',
-  primary: '#6baed6',
-  primaryDim: 'rgba(107, 174, 214, 0.12)',
-  accent: '#9b8fd4',
-  accentDim: 'rgba(155, 143, 212, 0.12)',
-  foreground: '#d8e6f3',
-  mutedForeground: '#6b8099',
-  border: '#1a2840',
-  muted: '#1a2840',
-  destructive: '#e57373',
-  destructiveForeground: '#ffffff',
-  success: '#81c995',
+  background: '#04060B',
+  surface: '#0B1120',
+  card: '#121A2F',
+  primary: '#82C3E5',
+  primaryDim: 'rgba(130, 195, 229, 0.15)',
+  accent: '#A79DE0',
+  accentDim: 'rgba(167, 157, 224, 0.15)',
+  foreground: '#E2E8F0',
+  mutedForeground: '#7B8C9C',
+  border: '#1E293B',
+  muted: '#1E293B',
+  destructive: '#F87171',
+  destructiveForeground: '#FFFFFF',
+  success: '#86EFAC',
 };
 
 const colors = {

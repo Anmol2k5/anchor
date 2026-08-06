@@ -16,6 +16,9 @@ import { Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import { useCuan } from '@/context/CuanContext';
+import VoiceRecorder from '@/components/VoiceRecorder';
+
+import BackgroundGradient from '@/components/BackgroundGradient';
 
 export default function SettingsScreen() {
   const colors = useColors();
@@ -46,7 +49,7 @@ export default function SettingsScreen() {
   const bottomPadding = insets.bottom + (Platform.OS === 'web' ? 34 : 0);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background, paddingTop: topPadding }]}>
+    <BackgroundGradient style={[styles.container, { paddingTop: topPadding }]}>
       <View style={styles.header}>
         <Pressable
           onPress={() => router.back()}
@@ -152,6 +155,14 @@ export default function SettingsScreen() {
           ))}
         </View>
 
+        {/* Voice Feature */}
+        <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle, { color: colors.mutedForeground, fontFamily: 'Inter_500Medium' }]}>
+            Voice Guide
+          </Text>
+        </View>
+        <VoiceRecorder />
+
         {/* About */}
         <View style={styles.sectionHeader}>
           <Text style={[styles.sectionTitle, { color: colors.mutedForeground, fontFamily: 'Inter_500Medium' }]}>
@@ -173,7 +184,7 @@ export default function SettingsScreen() {
           </Text>
         </View>
       </ScrollView>
-    </View>
+    </BackgroundGradient>
   );
 }
 

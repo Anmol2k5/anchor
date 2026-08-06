@@ -20,6 +20,10 @@ import { audioExercises, type AudioExercise } from '@/data/groundingContent';
 
 type BreathPhase = 'inhale' | 'hold' | 'exhale' | 'holdAfter';
 
+import BackgroundGradient from '@/components/BackgroundGradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Audio } from 'expo-av';
+
 export default function AudioScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
@@ -27,6 +31,11 @@ export default function AudioScreen() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [breathPhase, setBreathPhase] = useState<BreathPhase>('inhale');
   const [cycleCount, setCycleCount] = useState(0);
+  
+  // Custom Voice State
+  const [customVoiceUri, setCustomVoiceUri] = useState<string | null>(null);
+  const soundRef = useRef<Audio.Sound | null>(null);
+
   const breathScale = useRef(new Animated.Value(0.8)).current;
   const phaseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const phaseLabel: Record<BreathPhase, string> = {
@@ -36,12 +45,36 @@ export default function AudioScreen() {
     holdAfter: 'hold',
   };
 
-  function startExercise(ex: AudioExercise) {
+  useEffect(() => {
+    (async () => {
+      const saved = await AsyncStorage.getItem('custom_voice_uri');
+      if (saved) setCustomVoiceUri(saved);
+    })();
+    return () => {
+      if (phaseTimer.current) clearTimeout(phaseTimer.current);
+      if (soundRef.current) soundRef.current.unloadAsync();
+    };
+  }, []);
+
+  async function startExercise(ex: AudioExercise) {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setActiveExercise(ex);
     setIsPlaying(true);
     setCycleCount(0);
     setBreathPhase('inhale');
+    
+    if (customVoiceUri) {
+      try {
+        if (soundRef.current) await soundRef.current.unloadAsync();
+        const { sound } = await Audio.Sound.createAsync({ uri: customVoiceUri });
+        soundRef.current = sound;
+        await sound.setIsLoopingAsync(true); // Loop it for the duration of the exercise
+        await sound.playAsync();
+      } catch (err) {
+        console.error('Failed to play custom voice', err);
+      }
+    }
+
     runPhase('inhale', ex, 0);
   }
 
@@ -100,15 +133,18 @@ export default function AudioScreen() {
     breathScale.stopAnimation();
     setIsPlaying(false);
     setActiveExercise(null);
+    if (soundRef.current) {
+      soundRef.current.stopAsync();
+    }
   }
 
-  useEffect(() => () => { if (phaseTimer.current) clearTimeout(phaseTimer.current); }, []);
+
 
   const topPadding = insets.top + (Platform.OS === 'web' ? 67 : 0);
   const bottomPadding = insets.bottom + (Platform.OS === 'web' ? 34 : 0);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background, paddingTop: topPadding }]}>
+    <BackgroundGradient style={[styles.container, { paddingTop: topPadding }]}>
       {/* Header */}
       <View style={styles.header}>
         <Pressable
@@ -171,7 +207,7 @@ export default function AudioScreen() {
 
       {/* Breathing Modal */}
       <Modal visible={!!activeExercise} transparent animationType="fade">
-        <View style={[styles.modalBg, { backgroundColor: colors.background }]}>
+        <BackgroundGradient style={styles.modalBg}>
           {activeExercise && (
             <>
               <Text style={[styles.modalTitle, { color: colors.foreground, fontFamily: 'Inter_600SemiBold' }]}>
@@ -204,9 +240,9 @@ export default function AudioScreen() {
               </Pressable>
             </>
           )}
-        </View>
+        </BackgroundGradient>
       </Modal>
-    </View>
+    </BackgroundGradient>
   );
 }
 

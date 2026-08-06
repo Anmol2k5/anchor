@@ -14,6 +14,7 @@ import { Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
 import BreathingCircle from '@/components/BreathingCircle';
+import BackgroundGradient from '@/components/BackgroundGradient';
 
 export default function HomeScreen() {
   const colors = useColors();
@@ -36,11 +37,10 @@ export default function HomeScreen() {
   ];
 
   return (
-    <View
+    <BackgroundGradient
       style={[
         styles.container,
         {
-          backgroundColor: colors.background,
           paddingTop: insets.top + (Platform.OS === 'web' ? 67 : 0),
           paddingBottom: insets.bottom + (Platform.OS === 'web' ? 34 : 0),
         },
@@ -102,7 +102,7 @@ export default function HomeScreen() {
           </Pressable>
         ))}
       </View>
-    </View>
+    </BackgroundGradient>
   );
 }
 
