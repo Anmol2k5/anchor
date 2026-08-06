@@ -70,6 +70,10 @@ export default function HomeScreen() {
         <Text style={[styles.hint, { color: colors.mutedForeground, fontFamily: 'Inter_400Regular' }]}>
           tap when you need it
         </Text>
+        
+        <Text style={[styles.jessicaMessage, { color: colors.mutedForeground, fontFamily: 'Inter_400Regular' }]}>
+          always here for you, jessica ❤️
+        </Text>
       </View>
 
       {/* Bottom Nav */}
@@ -138,6 +142,12 @@ const styles = StyleSheet.create({
   hint: {
     fontSize: 13,
     letterSpacing: 1,
+  },
+  jessicaMessage: {
+    fontSize: 12,
+    letterSpacing: 0.5,
+    marginTop: 20,
+    opacity: 0.6,
   },
   bottomNav: {
     flexDirection: 'row',
