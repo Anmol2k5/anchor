@@ -58,7 +58,7 @@ jobs:
         if: steps.check_token.outputs.has_token == 'true'
         env:
           EXPO_OWNER: mayur2ks-team
-        run: cd artifacts/mobile && eas build --platform android --profile preview --local --non-interactive
+        run: cd artifacts/mobile && eas build --platform android --profile preview --local --non-interactive --owner mayur2ks-team
 
       - name: Upload APK as GitHub Artifact
         if: steps.check_token.outputs.has_token == 'true'
